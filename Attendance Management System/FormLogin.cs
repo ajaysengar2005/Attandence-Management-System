@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Attendance_Management_System.Main.Forms
 {
     public partial class FormLogin : Form
     {
-        private string sql = @"Data Source = .\SQLEXPRESS;
+        private string sql = @"Data Source = AJAYSENGAR\SQLEXPRESS;
                              Initial Catalog = Attendance_Management_System;
                              Integrated Security = True;";
         public FormLogin()
@@ -76,9 +77,9 @@ namespace Attendance_Management_System.Main.Forms
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             string check = Attendance.Attendance.IsValidNamePass(textBoxName.Text.Trim(), textBoxPassword.Text.Trim(), sql);
-            if(textBoxName.Text.Trim() != string.Empty && textBoxPassword.Text.Trim() != string.Empty)
+            if (textBoxName.Text.Trim() != string.Empty && textBoxPassword.Text.Trim() != string.Empty)
             {
-                if(check != "")
+                if (check != "")
                 {
                     FormMain formMain = new FormMain();
                     textBoxName.Clear();
@@ -106,7 +107,7 @@ namespace Attendance_Management_System.Main.Forms
 
         private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 SelectNextControl(ActiveControl, true, true, true, true);
                 e.Handled = true;
@@ -121,7 +122,7 @@ namespace Attendance_Management_System.Main.Forms
 
         private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 buttonLogin.PerformClick();
                 e.Handled = true;
@@ -135,3 +136,4 @@ namespace Attendance_Management_System.Main.Forms
         }
     }
 }
+
